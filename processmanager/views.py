@@ -13,7 +13,7 @@ from flask import render_template, request
 @app.route('/')
 def index():
     processes = []
-    output = pm.processList()[1:].split("\n")
+    output = pm.processList()[1:].split("\n")[:-1]
     labels = output[0].split()
 
     for line in output[1:]:  # skip the first element

@@ -1,5 +1,3 @@
-import {io} from 'socket.io.js';
-
 $(document).ready(function() {
 
 	var socket = io.connect('http://localhost:5000');
@@ -8,10 +6,25 @@ $(document).ready(function() {
 		socket.send('User has connected!');
 	});
 
-	socket.on('message', function(msg) {
+	socket.on('message', function(labels,processes) {
 		//$("#messages").append('<li>'+msg+'</li>');
-		console.log('Received message')
-        console.log('msg.data')
+		console.log(processes)
+		$('#proctable').empty()
+		$('#proctable').append("<tr id=\"tableheader\">	</tr>")
+
+		for (var item in labels) {
+    		$('#tableheader').append('<th>'+labels[item]+'</th>')
+		}
+
+		for (var item in processes){
+			$('#proctable').append("<tr id=\"tablerow"+item+"\"></tr>")
+			for (var info in labels){
+				$('#tablerow'+item).append("<td>"+processes[item][labels[info]]+"</td>")
+				//console.log(processes[item][info])
+			}
+		}
+		//$('#tablerows').empty()
+
 	});
 
 	$('#sendbutton').on('click', function() {

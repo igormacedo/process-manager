@@ -22,6 +22,8 @@ Execute the following command
 ```
 python run.py
 ```
+To avoid errors, run without debug mode. And use Ctrl+F5 for reloading page without cache, when testing code
+
 ## Enunciado ##
 Escreva um programa em C/C++ para gerenciar processos no SO (Linux), com as seguintes características:
 

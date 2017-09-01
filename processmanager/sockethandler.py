@@ -1,13 +1,25 @@
 from processmanager import socketio
 from flask_socketio import SocketIO, send,  emit
 import time
+import procmanager as pm
 
 thread = None
 
 
 def background_thread():
     while True:
-        socketio.emit('message', {'goodbye': "Goodbye"})
+        processes = []
+        output = pm.processList()[1:].split("\n")[:-1]
+        labels = output[0].split()
+
+        for line in output[1:]:  # skip the first element
+            temp_proc = line.split(None, len(labels) - 1)
+            temp_dict = {}
+            for index, item in enumerate(temp_proc):
+                temp_dict[labels[index]] = item
+            processes.append(temp_dict)
+
+        socketio.emit('message', (labels, processes))
         #send("teste", broadcast=True)
         time.sleep(1)
 

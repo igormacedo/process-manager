@@ -25,16 +25,17 @@
             <!-- Default panel contents -->
             <div class="panel-heading">Processes List</div>
             <!-- Table -->
-            <table class="table">
-                </tr>
+            <table id="proctable" class="table">
+                <tr id="tableheader">
                 {% for label in labels%}
                   <th>{{label}}</th>
                 {% endfor %}
                 </tr>
 
+
                 {% for proc in processes %}
                 {% autoescape false %}
-                </tr>
+                <tr>
                     {% for label in labels%}
                       <td>{{proc[label]}}</td>
                     {% endfor %}
