@@ -15,17 +15,14 @@ def index():
     processes = []
     output = pm.processList()[1:].split("\n")
     labels = output[0].split()
-    print labels
 
     for line in output[1:]:  # skip the first element
-        print line
         temp_proc = line.split(None, len(labels) - 1)
         temp_dict = {}
         for index, item in enumerate(temp_proc):
             temp_dict[labels[index]] = item
         processes.append(temp_dict)
 
-    print processes
     return render_template('index.html',
                            labels=labels,
                            processes=processes)
