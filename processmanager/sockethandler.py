@@ -35,3 +35,12 @@ def connect():
 def handleMessage(msg):
     print('Message: ' + msg)
     socketio.send(msg, broadcast=True)
+
+@socketio.on('kill')
+def handleKill(data):
+	result = pm.killProcess(data['pid'], data['option'])
+
+@socketio.on('setcpu')
+def handleSetCpu(data):
+	result = pm.setCpu(data['pid'], data['cpuNumber'])
+

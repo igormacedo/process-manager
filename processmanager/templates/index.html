@@ -3,10 +3,9 @@
 
 <head>
     <title>Python Flask Bucket List App</title>
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 
   <!-- Scripts padrão -->
     <script language="JavaScript" type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.9.1.js') }}"></script>
@@ -24,26 +23,51 @@
         <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading">Processes List</div>
-            <!-- Table -->
+			<!-- Table -->
             <table id="proctable" class="table">
-                <tr id="tableheader">
-                {% for label in labels%}
-                  <th>{{label}}</th>
-                {% endfor %}
-                </tr>
-
-
+				<thead id="proctable-header">
+                	<tr id="tableheader">
+                	{% for label in labels%}
+                  		<th>{{label}}</th>
+                	{% endfor %}
+                	</tr>
+				</thead>
+				<!-- div class="scrollbody"-->
+				<tbody id="proctable-body">
                 {% for proc in processes %}
-                {% autoescape false %}
-                <tr>
-                    {% for label in labels%}
-                      <td>{{proc[label]}}</td>
+                	{% autoescape false %}
+                	<tr>
+                   	{% for label in labels%}
+                      	<td>{{proc[label]}}</td>
                     {% endfor %}
-                </tr>
-                {% endautoescape %}
+                	</tr>
+                	{% endautoescape %}
                 {%endfor%}
+				</tbody>
+				<!--/div-->
             </table>
         </div>
+
+		<div class="panel panel-default" >
+			<div class="panel-heading">Control of processes</div>
+
+			<form class="form-inline" id="control-of-processes" onsubmit="return false;">
+			<input type="number" class="form-control" id="pidInput" placeholder="PID">
+        	<button class="btn btn-warning" id="pause-process">Pause</button>
+	        <button class="btn btn-primary" id="continue-process">Continue</button>
+    	    <button class="btn btn-danger" id="kill-process">Kill</button>
+        	<input type="number" class="form-control" id="cpuNumberInput" placeholder="CPU Number">
+        	<button class="btn btn-success" id="set-cpu">Set CPU</button>
+			</form>
+			
+		</div>
+	
+		<!--input type="number" class="form-control" id="pidInput" placeholder="PID">
+		<button class="btn btn-warning" id="pause-process">Pause</button>
+		<button class="btn btn-primary" id="continue-process">Continue</button>
+		<button class="btn btn-danger" id="kill-process">Kill</button>
+        <input type="number" class="form-control" id="cpuNumberInput" placeholder="CPU Number">
+        <button class="btn btn-warning" id="set-cpu">Set CPU</button-->
 
         <footer class="footer">
             <p>&copy; Company 2015</p>

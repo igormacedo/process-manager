@@ -1,0 +1,18 @@
+thead th {
+	height: 30px;
+}
+
+tbody {
+	height: 200px;
+	overflow-y: auto;
+}
+
+#control-of-processes {
+	margin: 10px;
+	text-align: center;
+}
+
+/*div.scrollbody {
+	height: 200px;
+	overflow: auto;
+}*/

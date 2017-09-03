@@ -1,4 +1,9 @@
+#define _GNU_SOURCE
+#include <signal.h> // definição dos sinais de interrupções
+#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h> // system()
+#include <sched.h>
 #include <string.h>
 #include <Python.h>
 
@@ -18,7 +23,7 @@ char* getCommandOutput(const char* command)
         while (fgets(line,sizeof(line),fp))
         {
                 size+=strlen(line);
-                strcat(buffer=realloc(buffer,size+1),line);
+                strcat(buffer=realloc(buffer,size+10),line);
                 //I don't know why the size+1, but witout +1 there is a malloc problem
         }
 
@@ -30,8 +35,51 @@ char* getCommandOutput(const char* command)
 // Function to be called from Python
 static PyObject* py_processList(PyObject* self, PyObject* args)
 {
-        char *s = getCommandOutput("ps -au");
+        char *s = getCommandOutput("ps a -o user,pid,cpuid,\%cpu,\%mem,state,time,command");
         return Py_BuildValue("s", s);
+}
+
+static PyObject* py_killProcess(PyObject* self, PyObject* args)
+{
+	int result = 1;
+	int pid, option;
+	PyArg_ParseTuple(args, "ii", &pid, &option);
+	
+	switch(option) {
+		case 1:
+			kill(pid, SIGKILL);
+			result = 0;
+			break;
+		case 2:
+			kill(pid, SIGSTOP);
+			result = 0;
+			break;
+		case 3:
+			kill(pid, SIGCONT);
+			result = 0;
+			break;
+	}
+
+	return Py_BuildValue("i", result);
+}
+
+static PyObject* py_setCpu(PyObject* self, PyObject* args)
+{
+	int result = 0;
+	int pid, cpu_number;
+	cpu_set_t mask;
+	
+	PyArg_ParseTuple(args, "ii", &pid, &cpu_number);
+	
+	CPU_ZERO(&mask);
+	CPU_SET(cpu_number, &mask);
+                
+	if(sched_setaffinity(pid, sizeof(cpu_set_t), &mask) < 0) {
+    	fprintf(stderr, "Erro setando CPU\n");
+		result = 1;
+    }
+    
+	return Py_BuildValue("i", result);
 }
 
 //Another function to be called from Python
@@ -45,6 +93,8 @@ static PyObject* py_myOtherFunction(PyObject* self, PyObject* args)
 // Bind Python function names to our C functions
 static PyMethodDef procmanager_methods[] = {
         {"processList", py_processList, METH_VARARGS},
+		{"killProcess", py_killProcess, METH_VARARGS},
+		{"setCpu", py_setCpu, METH_VARARGS},
         {"myOtherFunction", py_myOtherFunction, METH_VARARGS},
         {NULL, NULL}
 };

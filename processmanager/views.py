@@ -1,7 +1,7 @@
 import sys
 import os
-#path = os.path.realpath(__file__).replace("views.pyc","") + "c-module/build/lib.linux-x86_64-2.7/"
-# sys.path.append(path)
+#path = os.path.realpath(__file__).replace("views.pyc","")
+#sys.path.append(path)
 # queria adicionar o caminho do build automaticamente pro path do python
 
 import procmanager as pm
