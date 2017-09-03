@@ -35,8 +35,12 @@ char* getCommandOutput(const char* command)
 // Function to be called from Python
 static PyObject* py_processList(PyObject* self, PyObject* args)
 {
-        char *s = getCommandOutput("ps a -o user,pid,cpuid,\%cpu,\%mem,state,time,command");
-        return Py_BuildValue("s", s);
+        char *command_arg;
+        PyArg_ParseTuple(args, "s", &command_arg);
+
+        char *s = getCommandOutput(command_arg);
+        
+		return Py_BuildValue("s", s);
 }
 
 static PyObject* py_killProcess(PyObject* self, PyObject* args)
