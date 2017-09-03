@@ -20,12 +20,14 @@ $(document).ready(function() {
 			$('#proctable').append("<tr id=\"tablerow"+item+"\"></tr>")
 			for (var info in labels){
 				$('#tablerow'+item).append("<td>"+processes[item][labels[info]]+"</td>")
-				//console.log(processes[item][info])
 			}
 		}
-		//$('#tablerows').empty()
-
 	});
+
+	$('#searchbox').on('input', function() {
+	    socket.emit('newfilter',$('#searchbox').val());
+	});
+
 
 	$('#sendbutton').on('click', function() {
 		socket.send($('#myMessage').val());
