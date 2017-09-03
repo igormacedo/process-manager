@@ -1,10 +1,6 @@
-thead th {
-	height: 30px;
-}
-
-tbody {
-	height: 200px;
-	overflow-y: auto;
+#processes-panel {
+	height: 400px;
+	overflow: scroll;
 }
 
 #control-of-processes {

@@ -5,7 +5,7 @@ import procmanager as pm
 
 thread = None
 
-commandps = "ps -e"
+commandps = "ps -e -o user,pid,cpuid,\%cpu,\%mem,state,time,command"
 grepfilter = ""
 labels = []
 
