@@ -24,6 +24,13 @@ python run.py
 ```
 To avoid errors, run without debug mode. And use Ctrl+F5 for reloading page without cache, when testing code
 
+## Test programs
+There are two test programs in tests/, which can be used for visualization on the Process Manager:
+- An infinite loop: this program is going to consume 100% of the core it is allocated to;
+- High memory usage: this program is going to do many malloc calls which will take up a lot of memory
+
+To compile these programs, go to tests and run `make`. Then, simply run `./inf_loop` and `./high_mem` to have fun.
+
 ## Enunciado ##
 Escreva um programa em C/C++ para gerenciar processos no SO (Linux), com as seguintes características:
 
