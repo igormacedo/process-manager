@@ -60,5 +60,5 @@ Sugestão para listas os processos:
 Data de Entrega: postar o vídeo até 23:59 do dia 04-set-2017.
 
 ## Authors
-- Igor Macedo <igormacedo94@gmail.com> 
-- Cadu Bentzen <cadubentzen@gmail.com>
+- Igor Macedo - **igormacedo94 at gmail.com**
+- Cadu Bentzen - **cadubentzen at gmail.com**
