@@ -8,7 +8,15 @@
 	text-align: center;
 }
 
-/*div.scrollbody {
-	height: 200px;
-	overflow: auto;
-}*/
+td.namecol {
+	padding-left: 10px;
+}
+
+td.progresscol {
+	width: 100%;
+	padding: 15px;
+}
+
+.customprogress {
+	margin-bottom: 0px;
+}

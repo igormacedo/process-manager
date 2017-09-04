@@ -25,33 +25,52 @@
             <input id="searchbox" class="form-control" type="text">
         </div>
 
-        <div class="panel panel-default" id="processes-panel">
-            <!-- Default panel contents -->
-            <div class="panel-heading">Processes List</div>
-			<!-- Table -->
-            <table id="proctable" class="table">
-				<thead id="proctable-header">
-                	<tr id="tableheader">
-                	{% for label in labels%}
-                  		<th>{{label}}</th>
-                	{% endfor %}
-                	</tr>
-				</thead>
-				<!-- div class="scrollbody"-->
-				<tbody id="proctable-body">
-                {% for proc in processes %}
-                	{% autoescape false %}
-                	<tr>
-                   	{% for label in labels%}
-                      	<td>{{proc[label]}}</td>
-                    {% endfor %}
-                	</tr>
-                	{% endautoescape %}
-                {%endfor%}
-				</tbody>
-				<!--/div-->
-            </table>
-        </div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-default" id="processes-panel">
+					<!-- Default panel contents -->
+					<div class="panel-heading">Processes List</div>
+					<!-- Table -->
+					<table id="proctable" class="table">
+						<thead id="proctable-header">
+							<tr id="tableheader">
+							{% for label in labels%}
+								<th>{{label}}</th>
+							{% endfor %}
+							</tr>
+						</thead>
+						<!-- div class="scrollbody"-->
+						<tbody id="proctable-body">
+						{% for proc in processes %}
+							{% autoescape false %}
+							<tr>
+							{% for label in labels%}
+								<td>{{proc[label]}}</td>
+							{% endfor %}
+							</tr>
+							{% endautoescape %}
+						{%endfor%}
+						</tbody>
+						<!--/div-->
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">Usage</div>
+					<table id="table-usage">
+						<tr>
+							<td class="namecol">CPU0</td>
+							<td class="progresscol">
+								<div class="progress customprogress">
+									<div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
 
 		<div class="panel panel-default" >
 			<div class="panel-heading">Control of processes</div>

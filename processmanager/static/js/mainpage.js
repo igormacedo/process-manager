@@ -6,9 +6,11 @@ $(document).ready(function() {
 		socket.send('User has connected!');
 	});
 
-	socket.on('message', function(labels,processes) {
+	socket.on('message', function(labels,processes,cpu_usage,memory_usage) {
+		//console.log(memory_usage);
 		//$("#messages").append('<li>'+msg+'</li>');
 		// console.log(processes)
+		// Fill table with processes first
 		$('#proctable-header').empty()
 		$('#proctable-header').append("<tr id=\"tableheader\">	</tr>")
 
@@ -23,6 +25,34 @@ $(document).ready(function() {
 				$('#tablerow'+item).append("<td>"+processes[item][labels[info]]+"</td>")
 			}
 		}
+		if(cpu_usage == null) return;
+		// Fill table with cpus
+		$('#table-usage').empty();
+		for(var i = 0; i < cpu_usage.length; i++) {
+			$('#table-usage').append("<tr id=\"cpu"+i+"\"></tr>");
+			$('#cpu'+i).append("<td class=\"namecol\">CPU"+i+"</td>");
+			$('#cpu'+i).append("<td class=\"progresscol\">" +
+				"<div class=\"progress customprogress\">" +
+				"<div class=\"progress-bar\" role=\"progressbar\" style=\"width:"+Math.round(cpu_usage[i])+"%\" " +
+				"aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\">"+Math.round(cpu_usage[i])+"%</div></div>");
+		}
+
+		if(memory_usage == null) return;
+		// Fill table with Virtual Memory and swap
+		$('#table-usage').append("<tr id=\"virtualmemory\"></tr>");
+		$('#virtualmemory').append("<td class=\"namecol\">Memory</td>");
+		$('#virtualmemory').append("<td class=\"progresscol\">" +
+			"<div class=\"progress customprogress\">" +
+			 "<div class=\"progress-bar\" role=\"progressbar\" style=\"width:"+Math.round(memory_usage[0])+"%\" " +
+			 "aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\">"+Math.round(memory_usage[0])+"%</div></div>");
+
+		$('#table-usage').append("<tr id=\"swapmemory\"></tr>");
+		$('#swapmemory').append("<td class=\"namecol\">Swap</td>");
+		$('#swapmemory').append("<td class=\"progresscol\">" +
+			"<div class=\"progress customprogress\">" +
+			 "<div class=\"progress-bar\" role=\"progressbar\" style=\"width:"+Math.round(memory_usage[1])+"%\" " +
+			 "aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\">"+Math.round(memory_usage[1])+"%</div></div>");
+
 	});
 
 	$('#searchbox').on('input', function() {
