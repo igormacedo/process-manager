@@ -31,7 +31,7 @@ There are two test programs in tests/, which can be used for visualization on th
 
 To compile these programs, go to tests and run `make`. Then, simply run `./inf_loop` and `./high_mem` to have fun.
 
-## Enunciado ##
+## Task proposal (Brazilian portuguese) 
 Escreva um programa em C/C++ para gerenciar processos no SO (Linux), com as seguintes características:
 
 -   Interface gráfica com listagem dos processos, indicando % de uso de CPU e Status.
@@ -58,3 +58,7 @@ Sugestão para listas os processos:
 -   A cada segundo, dar refresh na tela.
 
 Data de Entrega: postar o vídeo até 23:59 do dia 04-set-2017.
+
+## Authors
+- Igor Macedo <igormacedo94@gmail.com> 
+- Cadu Bentzen <cadubentzen@gmail.com>
