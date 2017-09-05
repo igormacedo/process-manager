@@ -17,7 +17,7 @@ python setup.py build
 
 And add the procmanager.so file to the same folder as views.py
 
-## How to run program ##
+## How to run the program ##
 Execute the following command
 ```
 python run.py
@@ -26,12 +26,12 @@ To avoid errors, run without debug mode. And use Ctrl+F5 for reloading page with
 
 ## Test programs ##
 There are two test programs in tests/, which can be used for visualization on the Process Manager:
-- An infinite loop: this program is going to consume 100% of the core it is allocated to;
-- High memory usage: this program is going to do many malloc calls which will take up a lot of memory
+-   An infinite loop: this program is going to consume 100% of the core it is allocated to;
+-   High memory usage: this program is going to do many malloc calls which will take up a lot of memory
 
 To compile these programs, go to tests and run `make`. Then, simply run `./inf_loop` and `./high_mem` to have fun.
 
-## Task proposal (Brazilian portuguese) 
+## Enunciado ##
 Escreva um programa em C/C++ para gerenciar processos no SO (Linux), com as seguintes características:
 
 -   Interface gráfica com listagem dos processos, indicando % de uso de CPU e Status.
@@ -58,7 +58,3 @@ Sugestão para listas os processos:
 -   A cada segundo, dar refresh na tela.
 
 Data de Entrega: postar o vídeo até 23:59 do dia 04-set-2017.
-
-## Authors
-- Igor Macedo <igormacedo94@gmail.com> 
-- Cadu Bentzen <cadubentzen@gmail.com>
