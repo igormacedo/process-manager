@@ -1,3 +1,16 @@
+Process Manager
+----------------
+A web based interface to manage processes on a linux server.
+
+[![Process Manager](https://media.giphy.com/media/nWF5ik4ilIeS4/giphy.gif)](http://www.youtube.com/watch?v=JG-m-vW_OtE)
+
+## Technologies used ##
+- Python 2.7
+- Flask
+- SocketIO
+- Python-C-API
+- Bootstrap
+
 ## Setting up environment ##
 1. Clone the repository, create the virtual environment and install the requirements
 ```
